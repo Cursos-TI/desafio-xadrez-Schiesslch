@@ -1,32 +1,104 @@
-#include <stdio.h>
+#include <stdio.h>  // Biblioteca padrão para entrada e saída
 
-// Desafio de Xadrez - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de movimentação das peças de xadrez.
-// O objetivo é utilizar estruturas de repetição e funções para determinar os limites de movimentação dentro do jogo.
+// Constantes com o número de movimentos de cada peça
+#define PASSOS_BISPO 5
+#define PASSOS_TORRE 5
+#define PASSOS_RAINHA 8
+
+// =============================
+// Funções Recursivas
+// =============================
+
+// Função recursiva para o Bispo: diagonal superior direita (Cima + Direita)
+void moverBispo(int passo) {
+    if (passo > PASSOS_BISPO) return;
+
+    // Loops aninhados dentro da recursão (obrigatório)
+    for (int i = 0; i < 2; i++) {
+        if (i == 0) {
+            printf("Passo %d: Cima\n", passo);
+        } else {
+            printf("Passo %d: Direita\n", passo);
+        }
+    }
+
+    moverBispo(passo + 1);  // Chamada recursiva
+}
+
+// Função recursiva para a Torre: Direita
+void moverTorre(int passo) {
+    if (passo > PASSOS_TORRE) return;
+
+    printf("Passo %d: Direita\n", passo);
+    moverTorre(passo + 1);
+}
+
+// Função recursiva para a Rainha: Esquerda
+void moverRainha(int passo) {
+    if (passo > PASSOS_RAINHA) return;
+
+    printf("Passo %d: Esquerda\n", passo);
+    moverRainha(passo + 1);
+}
+
+// =============================
+// Cavalo (Loop Aninhado com múltiplas variáveis e condições)
+// Cavalo se move em L: 2 para cima + 1 para direita
+// Apenas 1 movimento completo (como solicitado)
+// =============================
+void moverCavalo() {
+    printf("Movimentação do Cavalo:\n");
+
+    int linha = 0; // controle do movimento vertical (Cima)
+    int coluna = 0; // controle do movimento horizontal (Direita)
+
+    for (linha = 1; linha <= 2; linha++) {
+        // Simula 2 movimentos para cima
+        if (linha == 2) {
+            break; // interrompe se chegou no segundo movimento
+        }
+
+        printf("Movimento L - Parte %d: Cima\n", linha);
+    }
+
+    for (coluna = 1; coluna <= 1; coluna++) {
+        if (coluna != 1) {
+            continue; // pula se não for a coluna correta (exemplo de uso)
+        }
+
+        printf("Movimento L - Parte 3: Direita\n");
+    }
+}
 
 int main() {
-    // Nível Novato - Movimentação das Peças
-    // Sugestão: Declare variáveis constantes para representar o número de casas que cada peça pode se mover.
+    // =============================
+    // Bispo
+    // =============================
+    printf("Movimentação do Bispo:\n");
+    moverBispo(1);
 
-    // Implementação de Movimentação do Bispo
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação do Bispo em diagonal.
+    printf("\n");
 
-    // Implementação de Movimentação da Torre
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Torre para a direita.
+    // =============================
+    // Torre
+    // =============================
+    printf("Movimentação da Torre:\n");
+    moverTorre(1);
 
-    // Implementação de Movimentação da Rainha
-    // Sugestão: Utilize uma estrutura de repetição para simular a movimentação da Rainha para a esquerda.
+    printf("\n");
 
-    // Nível Aventureiro - Movimentação do Cavalo
-    // Sugestão: Utilize loops aninhados para simular a movimentação do Cavalo em L.
-    // Um loop pode representar a movimentação horizontal e outro vertical.
+    // =============================
+    // Rainha
+    // =============================
+    printf("Movimentação da Rainha:\n");
+    moverRainha(1);
 
-    // Nível Mestre - Funções Recursivas e Loops Aninhados
-    // Sugestão: Substitua as movimentações das peças por funções recursivas.
-    // Exemplo: Crie uma função recursiva para o movimento do Bispo.
+    printf("\n");
 
-    // Sugestão: Implemente a movimentação do Cavalo utilizando loops com variáveis múltiplas e condições avançadas.
-    // Inclua o uso de continue e break dentro dos loops.
+    // =============================
+    // Cavalo
+    // =============================
+    moverCavalo();
 
     return 0;
 }
